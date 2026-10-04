@@ -1,0 +1,4 @@
+Manrope (c) The Manrope Project Authors — https://github.com/sharanda/manrope
+Outfit (c) The Outfit Project Authors — https://github.com/Outfitio/Outfit-Fonts
+Ambas bajo SIL Open Font License 1.1: https://openfontlicense.org
+Archivos WOFF2 (subconjuntos latin y latin-ext, peso variable 400–700) descargados de Google Fonts el 2026-10-02.

@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* Fuentes autoalojadas (antes: Google Fonts, CSS bloqueante de terceros). OFL 1.1, ver public/fonts/LICENSE.txt */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/manrope-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/manrope-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/outfit-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@custom-variant pointer-fine (@media (hover: hover) and (pointer: fine));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  /* Paleta RP Puello & Asociados: rojo, negro y blanco (contraste WCAG AA). */
+  --color-paper: #f8f7f6;
+  --color-paper-2: #f2ecec;
+  --color-ink: #161314;
+  --color-ink-soft: #2e2a2b;
+  --color-brand: #c8102e; /* 5,5:1 sobre paper (texto y fondos con texto paper) */
+  --color-brand-deep: #9a0c23; /* hover; 8,0:1 con texto paper */
+  --color-brand-light: #ff8a98; /* acento sobre ink: 8,2:1 */
+  --color-red: #c81e2a; /* errores de formulario */
+  --color-red-deep: #9e1721;
+  --color-muted: #5e5759; /* 6,6:1 sobre paper */
+  --color-subtle: #625b5d; /* 6,2:1 sobre paper */
+  --color-border: color-mix(in oklab, var(--color-ink) 12%, transparent);
+  --color-border-strong: color-mix(in oklab, var(--color-ink) 22%, transparent);
+  --color-ring: color-mix(in oklab, var(--color-brand) 45%, transparent);
+  --color-whatsapp: #0b6e62; /* verde WhatsApp oscuro: 5,7:1 con texto paper */
+  --color-whatsapp-deep: #08564c;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  --text-kicker: 0.72rem;
+  --text-body: 1.0625rem;
+  --text-lede: 1.2rem;
+  --text-section: clamp(1.85rem, 1.3rem + 2.2vw, 2.85rem);
+  --text-display: clamp(2.6rem, 1.2rem + 5.5vw, 5.2rem);
+
+  --tracking-kicker: 0.18em;
+  --tracking-display: -0.03em;
+
+  --aspect-photo: 4 / 3;
+  --aspect-portrait: 3 / 4;
+  --aspect-wide: 16 / 10;
+  --aspect-land: 3 / 2;
+
+  --shadow-soft: 0 24px 48px -28px rgb(22 19 20 / 0.4);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-paper);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-copy > * {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+.hero-copy > * {
+  animation: rise 700ms var(--ease-out) both;
+}
+
+.hero-copy > *:nth-child(1) {
+  animation-delay: 40ms;
+}
+.hero-copy > *:nth-child(2) {
+  animation-delay: 120ms;
+}
+.hero-copy > *:nth-child(3) {
+  animation-delay: 200ms;
+}
+.hero-copy > *:nth-child(4) {
+  animation-delay: 280ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
